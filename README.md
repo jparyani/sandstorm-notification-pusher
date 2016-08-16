@@ -4,7 +4,7 @@ This is a quick and dirty example of how to get push notifications to your phone
 
 ## How to run
 
-All you need is an installation of node/npm. Tested working on node v0.10.x;
+All you need is an installation of node v4+/npm. Tested working on node v6.3.1. This will *NOT* work on node v0.10.x.
 
 First run:
 ```

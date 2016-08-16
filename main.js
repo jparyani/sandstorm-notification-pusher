@@ -1,15 +1,15 @@
-var asteroid = require("asteroid");
-var ws = require("ws");
-var request = require('request');
-var fs = require("fs");
-var path = require("path");
-var program = require('commander');
+const asteroid = require("asteroid");
+const ws = require("ws");
+const request = require('request');
+const fs = require("fs");
+const path = require("path");
+const program = require('commander');
 
 // We don't want to send errors too often if it gets stuck in a bad state (say server is down or login doesn't work)
-var ERROR_FILE = path.join(__dirname, 'last_error.json');
-var ERROR_REPORT_WAIT_TIME = 60 * 60 * 1000 // 1 Hour
-var TOKEN;
-var USER_ID;
+const ERROR_FILE = path.join(__dirname, 'last_error.json');
+const ERROR_REPORT_WAIT_TIME = 60 * 60 * 1000 // 1 Hour
+let TOKEN;
+let USER_ID;
 
 program
   .version('0.0.1')
@@ -36,9 +36,9 @@ function sendMessage(title, message) {
 function sendError(err) {
   console.error(err);
 
-  var timestamp = new Date(0);
+  let timestamp = new Date(0);
   if (fs.existsSync(ERROR_FILE)) {
-    var data = JSON.parse(fs.readFileSync(ERROR_FILE));
+    let data = JSON.parse(fs.readFileSync(ERROR_FILE));
     timestamp = new Date(data.timestamp);
   }
 
@@ -56,9 +56,9 @@ function sendError(err) {
 }
 
 function startConnection(server, resumeToken) {
-  var Asteroid = asteroid.createClass();
+  const Asteroid = asteroid.createClass();
   // Connect to a Meteor backend
-  var connection = new Asteroid({
+  const connection = new Asteroid({
       endpoint: server + "/websocket",
       SocketConstructor: ws,
   });
@@ -70,8 +70,8 @@ function startConnection(server, resumeToken) {
 
   connection.ddp.on("added", function (res) {
     if (res.collection === "desktopNotifications") {
-      var msg = res.fields;
-      var appActivity = msg.appActivity;
+      const msg = res.fields;
+      const appActivity = msg.appActivity;
       sendMessage(appActivity.user.name + " " + appActivity.actionText.defaultText, appActivity.body.defaultText);
     }
   });
