@@ -1,0 +1,12 @@
+{
+  "name": "sandstorm-notification-pusher",
+  "description": "A hacky solution for push notifications for now.",
+  "version": "0.1.0",
+  "devDependencies": {},
+  "dependencies": {
+    "asteroid": "2.0.2",
+    "commander": "^2.9.0",
+    "request": "2.74.0",
+    "ws": "1.1.1"
+  }
+}
