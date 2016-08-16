@@ -60,7 +60,7 @@ function startConnection(server, resumeToken) {
   // Connect to a Meteor backend
   var connection = new Asteroid({
       endpoint: server + "/websocket",
-      Socketvarructor: ws,
+      SocketConstructor: ws,
   });
 
   connection.on("connected", function () {
